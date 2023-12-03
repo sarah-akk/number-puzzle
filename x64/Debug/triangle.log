@@ -1,0 +1,4 @@
+﻿  Rendering.cpp
+C:\Users\Sarah Akkad\Documents\programing projects\OpenGL\open_GL(modern)\triangle\Rendering.cpp(22): warning C4244: '=': conversion from 'unsigned int' to 'float', possible loss of data
+C:\Users\Sarah Akkad\Documents\programing projects\OpenGL\open_GL(modern)\triangle\Rendering.cpp(28): warning C4244: '=': conversion from 'unsigned int' to 'float', possible loss of data
+  triangle.vcxproj -> C:\Users\Sarah Akkad\Documents\programing projects\OpenGL\open_GL(modern)\x64\Debug\triangle.exe

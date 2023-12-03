@@ -1,0 +1,19 @@
+﻿  glad.c
+  EBO.cpp
+  shaderClass.cpp
+C:\Users\Sarah Akkad\Documents\programing projects\OpenGL\open_GL(modern)\triangle\shaderClass.cpp(11): warning C4244: 'argument': conversion from 'std::streamoff' to 'const unsigned int', possible loss of data
+  triangle.cpp
+  VAO.cpp
+  VBO.cpp
+  Generating Code...
+triangle.obj : error LNK2019: unresolved external symbol _glfwInit referenced in function _main
+triangle.obj : error LNK2019: unresolved external symbol _glfwTerminate referenced in function _main
+triangle.obj : error LNK2019: unresolved external symbol _glfwWindowHint referenced in function _main
+triangle.obj : error LNK2019: unresolved external symbol _glfwCreateWindow referenced in function _main
+triangle.obj : error LNK2019: unresolved external symbol _glfwDestroyWindow referenced in function _main
+triangle.obj : error LNK2019: unresolved external symbol _glfwWindowShouldClose referenced in function _main
+triangle.obj : error LNK2019: unresolved external symbol _glfwPollEvents referenced in function _main
+triangle.obj : error LNK2019: unresolved external symbol _glfwMakeContextCurrent referenced in function _main
+triangle.obj : error LNK2019: unresolved external symbol _glfwSwapBuffers referenced in function _main
+C:\Users\Sarah Akkad\Documents\programing projects\OpenGL\open_GL(modern)\Libraries\lib\glfw3.lib : warning LNK4272: library machine type 'x64' conflicts with target machine type 'x86'
+C:\Users\Sarah Akkad\Documents\programing projects\OpenGL\open_GL(modern)\Debug\triangle.exe : fatal error LNK1120: 9 unresolved externals
