@@ -1,37 +1,27 @@
 #ifndef BOARD_H
 #define BOARD_H
-
+#include <vector>
 #include <iostream>
-
-class GameBoardSegment {
-public:
-	unsigned int col;
-	unsigned int row;
-	unsigned int identity;
-	int is_spacer;
-	int currently_selected;
-};
-
-
+using namespace std;
 
 
 class GameBoard {
 public:
 	static const unsigned int WIDTH = 3;
 	static const unsigned int HEIGHT = 3;
-	static const unsigned int GRIDLENGTH = (WIDTH * HEIGHT) - 1;
+	static const unsigned int GRIDLENGTH = (WIDTH * HEIGHT) ;
 	unsigned int board_size;
 	unsigned int col_max;
 	unsigned int row_max;
 
-	static GameBoardSegment* board_segments;
+	unsigned int  board_segments[WIDTH][HEIGHT];
 
 	GameBoard();
 	~GameBoard();
 
-	static void segmentSwap(unsigned int pos1, unsigned int pos2);
-	static void generateBoard(GameBoard* board);
+	static void generateBoard( vector<int>& initialPositions, GameBoard* board);
 	static void randomizeBoard(GameBoard* board);
+	static void segment_swap(GameBoard* board, int pos1, int pos2);
 	//static void renderBoard(GameBoard* board);
 	//static void cleanupBoard(GameBoard* board);
 };

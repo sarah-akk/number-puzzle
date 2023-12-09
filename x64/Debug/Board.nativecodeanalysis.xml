@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DEFECTS>
+  <DEFECT>
+    <SFA>
+      <FILEPATH>c:\users\sarah akkad\documents\programing projects\opengl\open_gl(modern)\triangle</FILEPATH>
+      <FILENAME>board.cpp</FILENAME>
+      <LINE>9</LINE>
+      <COLUMN>11</COLUMN>
+    </SFA>
+    <DEFECTCODE>26495</DEFECTCODE>
+    <DESCRIPTION>Variable 'GameBoard::col_max' is uninitialized. Always initialize a member variable (type.6).</DESCRIPTION>
+    <FUNCTION>GameBoard::{ctor}</FUNCTION>
+    <DECORATED>??0GameBoard@@QEAA@XZ</DECORATED>
+    <FUNCLINE>9</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT>
+  <DEFECT>
+    <SFA>
+      <FILEPATH>c:\users\sarah akkad\documents\programing projects\opengl\open_gl(modern)\triangle</FILEPATH>
+      <FILENAME>board.cpp</FILENAME>
+      <LINE>9</LINE>
+      <COLUMN>11</COLUMN>
+    </SFA>
+    <DEFECTCODE>26495</DEFECTCODE>
+    <DESCRIPTION>Variable 'GameBoard::board_segments' is uninitialized. Always initialize a member variable (type.6).</DESCRIPTION>
+    <FUNCTION>GameBoard::{ctor}</FUNCTION>
+    <DECORATED>??0GameBoard@@QEAA@XZ</DECORATED>
+    <FUNCLINE>9</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT>
+  <DEFECT>
+    <SFA>
+      <FILEPATH>c:\users\sarah akkad\documents\programing projects\opengl\open_gl(modern)\triangle</FILEPATH>
+      <FILENAME>board.cpp</FILENAME>
+      <LINE>9</LINE>
+      <COLUMN>11</COLUMN>
+    </SFA>
+    <DEFECTCODE>26495</DEFECTCODE>
+    <DESCRIPTION>Variable 'GameBoard::board_size' is uninitialized. Always initialize a member variable (type.6).</DESCRIPTION>
+    <FUNCTION>GameBoard::{ctor}</FUNCTION>
+    <DECORATED>??0GameBoard@@QEAA@XZ</DECORATED>
+    <FUNCLINE>9</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT>
+  <DEFECT>
+    <SFA>
+      <FILEPATH>c:\users\sarah akkad\documents\programing projects\opengl\open_gl(modern)\triangle</FILEPATH>
+      <FILENAME>board.cpp</FILENAME>
+      <LINE>9</LINE>
+      <COLUMN>11</COLUMN>
+    </SFA>
+    <DEFECTCODE>26495</DEFECTCODE>
+    <DESCRIPTION>Variable 'GameBoard::row_max' is uninitialized. Always initialize a member variable (type.6).</DESCRIPTION>
+    <FUNCTION>GameBoard::{ctor}</FUNCTION>
+    <DECORATED>??0GameBoard@@QEAA@XZ</DECORATED>
+    <FUNCLINE>9</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT>
+</DEFECTS>

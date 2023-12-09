@@ -23,6 +23,7 @@
     <ProjectGuid>{09B425AE-D239-4165-85D7-796C03E6D8CF}</ProjectGuid>
     <RootNamespace>triangle</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+    <ProjectName>num_puz</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -85,6 +86,7 @@
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>C:\Users\Sarah Akkad\Documents\programing projects\OpenGL\open_GL(modern)\configuration;C:\Users\Sarah Akkad\Documents\programing projects\OpenGL\open_GL(modern)\Libraries\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -99,6 +101,7 @@
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>C:\Users\Sarah Akkad\Documents\programing projects\OpenGL\open_GL(modern)\configuration;C:\Users\Sarah Akkad\Documents\programing projects\OpenGL\open_GL(modern)\Libraries\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -136,16 +139,11 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ProjectReference Include="..\open_GL.vcxproj">
-      <Project>{9d0ea6c8-9dd5-4f4f-a398-3dedef40674c}</Project>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <ClCompile Include="..\glad.c" />
     <ClCompile Include="Board.cpp" />
     <ClCompile Include="Rendering.cpp" />
     <ClCompile Include="shaderClass.cpp" />
-    <ClCompile Include="triangle.cpp" />
+    <ClCompile Include="num-puz.cpp" />
     <ClCompile Include="Window.cpp" />
   </ItemGroup>
   <ItemGroup>

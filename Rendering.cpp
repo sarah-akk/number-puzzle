@@ -1,21 +1,27 @@
 #include "Rendering.h"
 #include "Board.h"
 #include "Window.h"
+#include "shaderClass.h"
+
 #define STB_IMAGE_IMPLEMENTATION
-#include <stb_image.h>
 #include <fstream>
 #include <sstream>
 #include <vector>
 #include <glad/glad.h>
-#include "shaderClass.h"
-using namespace std;
+
+#include <glm/glm.hpp>
+#include <glm/gtc/matrix_transform.hpp>
+#include <learnopengl/filesystem.h>
+
+#include <glm/gtc/type_ptr.hpp>
+#include <stb_image.h>
 
 
-PrecomputedRenderableTargetTransforms Rendering::calculateRenderingGrid(GameBoard* board, WindowSize size)
+computedTransforms Rendering::calculateRenderingGrid(GameBoard* board, WindowSize size)
 {
 	float scale = 1.0;
 
-	PrecomputedRenderableTargetTransforms info;
+	computedTransforms info;
 
 	int space_after_offset_x = size.width - (board->col_max * EDGEGUARD);
 
@@ -31,17 +37,17 @@ PrecomputedRenderableTargetTransforms Rendering::calculateRenderingGrid(GameBoar
 	return info;
 }
 
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 LoadedTexture Rendering::loadTexture(const char* filepath)
 {
 	LoadedTexture info = { 0, 0, 0 };
-	int nrChannels;
-	stbi_set_flip_vertically_on_load(true);
-
+	 int nrChannels;
 	unsigned char* data = stbi_load(filepath, &info.width, &info.height, &nrChannels, 0);
 
 	if (data != NULL) {
+
+	
 		glGenTextures(1, &info.texture_id);
 		glBindTexture(GL_TEXTURE_2D, info.texture_id);
 
@@ -49,6 +55,7 @@ LoadedTexture Rendering::loadTexture(const char* filepath)
 		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
 		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
 		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+
 
 		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, info.width, info.height, 0, GL_RGB, GL_UNSIGNED_BYTE, data);
 		glGenerateMipmap(GL_TEXTURE_2D);
@@ -60,55 +67,26 @@ LoadedTexture Rendering::loadTexture(const char* filepath)
 	throw std::runtime_error("Couldn't load the image: " + std::string(filepath));
 }
 
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void Rendering::renderTexturedQuad(Shader* shader, LoadedTexture * texture, glm::mat4 * model, glm::mat4 * proj, glm::vec2 trans, glm::vec3 color)
+
+void Rendering::renderTexturedQuad(Shader* shader, LoadedTexture * texture, glm::mat4 * model, glm::mat4 * proj, glm::vec2 size, glm::vec3 color)
 {
+	
+	
+	unsigned int projectionLoc = glGetUniformLocation(shader->ID, "projection");
+	unsigned int modelLoc = glGetUniformLocation(shader->ID, "model");
+	glUniformMatrix4fv(projectionLoc, 1, GL_FALSE, glm::value_ptr(*proj));
+	glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(*model));
 
-	unsigned int vao ;
-	unsigned int vbo ;
-
-	float vertices[] = {
-		-0.5f, 0.5f, 0.0f, 1.0f,
-		0.5f, 0.5f, 1.0f, 1.0f,
-		-0.5f, -0.5f, 0.0f, 0.0f,
-
-		-0.5f, -0.5f, 0.0f, 0.0f,
-		0.5f, 0.5f, 1.0f, 1.0f,
-		0.5f, -0.5f, 1.0f, 0.0f
-	};
-
-	glGenVertexArrays(1, &vao);
-	glGenBuffers(1, &vbo);
-
-	glBindVertexArray(vao);
-	glBindBuffer(GL_ARRAY_BUFFER, vbo);
-	glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
-
-	// Position attribute
-	glVertexAttribPointer(0, 4, GL_FLOAT, GL_FALSE, 4 * sizeof(float), (void*)0);
-	glEnableVertexAttribArray(0);
-
-	glBindBuffer(GL_ARRAY_BUFFER, 0);
-
+	glUniform2fv(glGetUniformLocation(shader->ID, "size"), 1, &size[0]);
+	glUniform3fv(glGetUniformLocation(shader->ID, "color"), 1, &color[0]);
 
 	shader->Activate();
 
-	// Set shader uniforms
-	glUniformMatrix4fv(glGetUniformLocation(shader->shader_id, "model"), 1, GL_FALSE, glm::value_ptr(*model));
-	glUniformMatrix4fv(glGetUniformLocation(shader->shader_id, "projection"), 1, GL_FALSE, glm::value_ptr(*proj));
-	glUniform2fv(glGetUniformLocation(shader->shader_id, "size"), 1, &trans[0]);
-	glUniform3fv(glGetUniformLocation(shader->shader_id, "color"), 1, &color[0]);
-
-	// Activate texture unit 0
-	cout << texture->texture_id ;
 	glActiveTexture(GL_TEXTURE0);
 	glBindTexture(GL_TEXTURE_2D, texture->texture_id);
 
-
-	// Draw the quad
-	glBindVertexArray(vao);
-	glDrawArrays(GL_TRIANGLES, 0, 6);
 
 
 }
@@ -117,3 +95,4 @@ void Rendering::renderTexturedQuad(Shader* shader, LoadedTexture * texture, glm:
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+

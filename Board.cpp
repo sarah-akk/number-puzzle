@@ -2,70 +2,55 @@
 #include <ctime>
 #include <Windows.h>
 #include "Board.h"
+#include <vector>
+using namespace std;
 
 
 GameBoard::GameBoard() {
 }
 
 GameBoard::~GameBoard() {
-	delete[] board_segments;
 }
 
-GameBoardSegment* GameBoard::board_segments = nullptr;
+void GameBoard::generateBoard(vector<int>& initialPositions, GameBoard* board) {
 
-void GameBoard::generateBoard(GameBoard* board) {
-	srand(static_cast<unsigned int>(time(0)));
+	int index = 0;
+	for (int i = 0; i < WIDTH; i++) {
+		for (int j = 0; j < HEIGHT; j++) {
 
-	 board_segments = new GameBoardSegment[GameBoard::GRIDLENGTH];
-
-	for (size_t i = 0; i < WIDTH; i++) {
-		for (size_t j = 0; j < HEIGHT; j++) {
-			if (i == WIDTH - 1 && j == HEIGHT - 1) {
-				GameBoardSegment& current_segment = board_segments[(i * WIDTH) + j];
-				current_segment.col = i;
-				current_segment.row = j;
-				current_segment.identity = 0;
-				current_segment.is_spacer = 1;
-				current_segment.currently_selected = 0;
-			}
-			else {
-				GameBoardSegment& current_segment = board_segments[(i * WIDTH) + j];
-				current_segment.col = i;
-				current_segment.row = j;
-				current_segment.identity = ((i * WIDTH) + j) + 1;
-				current_segment.is_spacer = 0;
-				current_segment.currently_selected = 0;
-
-			}
+			board->board_segments[i][j] = initialPositions[index] ;
+			index+=1;
+		
 		}
 	}
-
-	board->board_size = GRIDLENGTH + 1;
-	board->col_max = WIDTH;
-	board->row_max = HEIGHT;
+			board->board_size = GRIDLENGTH + 1;
+			board->col_max = WIDTH;
+			board->row_max = HEIGHT;
 }
+	
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void GameBoard::randomizeBoard(GameBoard * board) {
-	for (unsigned int i = 0; i < GRIDLENGTH; i++) {
-		int value = rand() % 15;
-		segmentSwap(i, value);
+	void GameBoard::randomizeBoard(GameBoard * board) {
+		for (unsigned int i = 0; i < GRIDLENGTH; i++) {
+        // Generate a random index in the range [0, 7]
+        int value = rand() % 8;
+		segment_swap(board,i, value);
+    }
 	}
-}
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-
-void GameBoard::segmentSwap(unsigned int pos1, unsigned int pos2) {
-
-	GameBoardSegment seg_cpy = board_segments[pos1];
-	seg_cpy.col = board_segments[pos2].col;
-	seg_cpy.row = board_segments[pos2].row;
-
-	board_segments[pos2].col = board_segments[pos1].col;
-	board_segments[pos2].row = board_segments[pos1].row;
-
-	board_segments[pos1] = board_segments[pos2];
-	board_segments[pos2] = seg_cpy;
-}
+	void GameBoard::segment_swap(GameBoard* board,int i, int j) {
+		// Assuming board_segments is a 3x3 array
+		if (i >= 0 && i < WIDTH && j >= 0 && j < HEIGHT) {
+			// Swap elements (i, j) and (i, i)
+			int temp = board->board_segments[i][i];
+			board->board_segments[i][i] = board->board_segments[i][j];
+			board->board_segments[i][j] = temp;
+		}
+		else {
+			// Handle an out-of-bounds index error if needed
+			std::cerr << "Error: Attempted to swap out-of-bounds indices.\n";
+		}
+	}
 

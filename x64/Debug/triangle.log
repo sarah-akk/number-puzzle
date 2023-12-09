@@ -1,4 +1,7 @@
-﻿  Rendering.cpp
-C:\Users\Sarah Akkad\Documents\programing projects\OpenGL\open_GL(modern)\triangle\Rendering.cpp(22): warning C4244: '=': conversion from 'unsigned int' to 'float', possible loss of data
+﻿C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\MSBuild\Microsoft\VC\v160\Microsoft.CppBuild.targets(411,5): warning MSB8028: The intermediate directory (x64\Debug\) contains files shared from another project (triangle.vcxproj).  This can lead to incorrect clean and rebuild behavior.
+  Rendering.cpp
 C:\Users\Sarah Akkad\Documents\programing projects\OpenGL\open_GL(modern)\triangle\Rendering.cpp(28): warning C4244: '=': conversion from 'unsigned int' to 'float', possible loss of data
-  triangle.vcxproj -> C:\Users\Sarah Akkad\Documents\programing projects\OpenGL\open_GL(modern)\x64\Debug\triangle.exe
+C:\Users\Sarah Akkad\Documents\programing projects\OpenGL\open_GL(modern)\triangle\Rendering.cpp(34): warning C4244: '=': conversion from 'unsigned int' to 'float', possible loss of data
+  num-puz.cpp
+  Generating Code...
+  triangle.vcxproj -> C:\Users\Sarah Akkad\Documents\programing projects\OpenGL\open_GL(modern)\x64\Debug\num_puz.exe
